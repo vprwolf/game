@@ -1,77 +1,152 @@
-diff --git a/index.html b/index.html
-index e69de29bb2d1d6434b8b29ae775ad8c2e48c5391..48ee931f63e9897a91b0217d8608ebe375d8a352 100644
---- a/index.html
-+++ b/index.html
-@@ -0,0 +1,72 @@
-+<!doctype html>
-+<html lang="ko">
-+  <head>
-+    <meta charset="UTF-8" />
-+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-+    <meta name="theme-color" content="#fcfaf5" />
-+    <title>짝꿍을 찾아라! — 기억력 카드 게임</title>
-+    <link rel="stylesheet" href="style.css" />
-+    <script src="script.js" defer></script>
-+  </head>
-+  <body>
-+    <div class="ambient ambient-one" aria-hidden="true"></div>
-+    <div class="ambient ambient-two" aria-hidden="true"></div>
-+
-+    <main class="game-shell">
-+      <header class="topbar">
-+        <a class="brand" href="#" aria-label="게임 처음으로">
-+          <span class="brand-mark" aria-hidden="true">
-+            <span></span><span></span><span></span><span></span>
-+          </span>
-+          <span>짝꿍을 찾아라!</span>
-+        </a>
-+        <button class="sound-button" id="soundButton" type="button" aria-label="효과음 끄기" aria-pressed="true">
-+          <span id="soundIcon" aria-hidden="true">♪</span>
-+        </button>
-+      </header>
-+
-+      <section class="hero" aria-labelledby="gameTitle">
-+        <div class="eyebrow"><span></span> MEMORY GAME <span></span></div>
-+        <h1 id="gameTitle">기억력 카드 게임</h1>
-+        <p>카드를 뒤집어 같은 그림의 짝을 찾아보세요!</p>
-+      </section>
-+
-+      <section class="scoreboard" aria-label="게임 현황">
-+        <div class="stat">
-+          <span class="stat-icon coral" aria-hidden="true">↻</span>
-+          <div><span class="stat-label">시도 횟수</span><strong id="moves">0</strong></div>
-+        </div>
-+        <div class="divider" aria-hidden="true"></div>
-+        <div class="stat">
-+          <span class="stat-icon yellow" aria-hidden="true">★</span>
-+          <div><span class="stat-label">찾은 짝</span><strong><span id="matches">0</span><small> / 8</small></strong></div>
-+        </div>
-+        <div class="divider" aria-hidden="true"></div>
-+        <div class="stat">
-+          <span class="stat-icon teal" aria-hidden="true">◷</span>
-+          <div><span class="stat-label">경과 시간</span><strong id="timer">00:00</strong></div>
-+        </div>
-+        <button class="restart-button" id="restartButton" type="button"><span aria-hidden="true">↻</span> 다시 시작</button>
-+      </section>
-+
-+      <section class="board" id="gameBoard" aria-label="기억력 카드 16장"></section>
-+
-+      <p class="hint"><span aria-hidden="true">✦</span> 모든 짝을 찾으면 게임이 끝나요. 천천히 기억해 보세요!</p>
-+    </main>
-+
-+    <div class="modal" id="winModal" role="dialog" aria-modal="true" aria-labelledby="winTitle" hidden>
-+      <div class="modal-card">
-+        <div class="confetti" aria-hidden="true">✦</div>
-+        <div class="trophy" aria-hidden="true">🏆</div>
-+        <p class="modal-kicker">MISSION COMPLETE</p>
-+        <h2 id="winTitle">모든 짝을 찾았어요!</h2>
-+        <p>대단한 기억력이에요. 이번 기록을 확인해 보세요.</p>
-+        <div class="result-row">
-+          <div><span>시도 횟수</span><strong id="finalMoves">0회</strong></div>
-+          <div><span>걸린 시간</span><strong id="finalTime">00:00</strong></div>
-+        </div>
-+        <button id="playAgainButton" type="button">한 번 더 하기 <span aria-hidden="true">→</span></button>
-+      </div>
-+    </div>
-+  </body>
-+</html>
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#fcfaf5" />
+
+    <title>짝꿍을 찾아라! — 기억력 카드 게임</title>
+
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+  </head>
+
+  <body>
+    <div class="ambient ambient-one" aria-hidden="true"></div>
+    <div class="ambient ambient-two" aria-hidden="true"></div>
+
+    <main class="game-shell">
+      <header class="topbar">
+        <a class="brand" href="#" aria-label="게임 처음으로">
+          <span class="brand-mark" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+          </span>
+
+          <span>짝꿍을 찾아라!</span>
+        </a>
+
+        <button
+          class="sound-button"
+          id="soundButton"
+          type="button"
+          aria-label="효과음 끄기"
+          aria-pressed="true"
+        >
+          <span id="soundIcon" aria-hidden="true">♪</span>
+        </button>
+      </header>
+
+      <section class="hero" aria-labelledby="gameTitle">
+        <div class="eyebrow">
+          <span></span>
+          MEMORY GAME
+          <span></span>
+        </div>
+
+        <h1 id="gameTitle">기억력 카드 게임</h1>
+
+        <p>카드를 뒤집어 같은 그림의 짝을 찾아보세요!</p>
+      </section>
+
+      <section class="scoreboard" aria-label="게임 현황">
+        <div class="stat">
+          <span class="stat-icon coral" aria-hidden="true">↻</span>
+
+          <div>
+            <span class="stat-label">시도 횟수</span>
+            <strong id="moves">0</strong>
+          </div>
+        </div>
+
+        <div class="divider" aria-hidden="true"></div>
+
+        <div class="stat">
+          <span class="stat-icon yellow" aria-hidden="true">★</span>
+
+          <div>
+            <span class="stat-label">찾은 짝</span>
+
+            <strong>
+              <span id="matches">0</span>
+              <small> / 8</small>
+            </strong>
+          </div>
+        </div>
+
+        <div class="divider" aria-hidden="true"></div>
+
+        <div class="stat">
+          <span class="stat-icon teal" aria-hidden="true">◷</span>
+
+          <div>
+            <span class="stat-label">경과 시간</span>
+            <strong id="timer">00:00</strong>
+          </div>
+        </div>
+
+        <button
+          class="restart-button"
+          id="restartButton"
+          type="button"
+        >
+          <span aria-hidden="true">↻</span>
+          다시 시작
+        </button>
+      </section>
+
+      <section
+        class="board"
+        id="gameBoard"
+        aria-label="기억력 카드 16장"
+      ></section>
+
+      <p class="hint">
+        <span aria-hidden="true">✦</span>
+        모든 짝을 찾으면 게임이 끝나요. 천천히 기억해 보세요!
+      </p>
+    </main>
+
+    <div
+      class="modal"
+      id="winModal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="winTitle"
+      hidden
+    >
+      <div class="modal-card">
+        <div class="confetti" aria-hidden="true">✦</div>
+
+        <div class="trophy" aria-hidden="true">🏆</div>
+
+        <p class="modal-kicker">MISSION COMPLETE</p>
+
+        <h2 id="winTitle">모든 짝을 찾았어요!</h2>
+
+        <p>
+          대단한 기억력이에요. 이번 기록을 확인해 보세요.
+        </p>
+
+        <div class="result-row">
+          <div>
+            <span>시도 횟수</span>
+            <strong id="finalMoves">0회</strong>
+          </div>
+
+          <div>
+            <span>걸린 시간</span>
+            <strong id="finalTime">00:00</strong>
+          </div>
+        </div>
+
+        <button id="playAgainButton" type="button">
+          한 번 더 하기
+          <span aria-hidden="true">→</span>
+        </button>
+      </div>
+    </div>
+  </body>
+</html>
